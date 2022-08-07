@@ -2,23 +2,25 @@ import React, {useState} from "react"
 import './App.css';
 
 function App() {
-  const [formData, setFirstName] = useState({
-       firstName:"",
-       lastName:"",
-       email: "",
-       comments:""
-  });
-   
-  console.log(formData);
+  const [formData, setFormData] = React.useState(
+    {
+        firstName: "", 
+        lastName: "", 
+        email: "", 
+        comments: "", 
+        isFriendly: true
+    }
+)
 
-  function handleChange(event) {
-    setFirstName((prevFormData) => {
-      return {
-        ...prevFormData,
-        [event.target.name]: event.target.value
-      }
+function handleChange(event) {
+    const {name, value, type, checked} = event.target
+    setFormData(prevFormData => {
+        return {
+            ...prevFormData,
+            [name]: type === "checkbox" ? checked : value
+        }
     })
-  }
+}
   return (
      <form className="App">
         <input 
@@ -50,6 +52,16 @@ function App() {
              onChange={handleChange}
              name="comments"
              value={formData.comments}  />
+
+       <input 
+             type="checkbox" 
+             id="isFriendly" 
+             checked={formData.isFriendly}
+             onChange={handleChange}
+             name="isFriendly"
+         />
+         <label htmlFor="isFriendly">Are you friendly?</label>
+         <br />
 
      </form>
   );
