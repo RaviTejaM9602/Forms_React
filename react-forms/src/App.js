@@ -4,7 +4,9 @@ import './App.css';
 function App() {
   const [formData, setFirstName] = useState({
        firstName:"",
-       lastName:""
+       lastName:"",
+       email: "",
+       comments:""
   });
    
   console.log(formData);
@@ -35,6 +37,19 @@ function App() {
           value={formData.lastName} 
         />
 
+        <input 
+          type="email" 
+          placeholder="Email"
+          onChange={handleChange}
+          name="email"
+          value={formData.email} 
+        />
+
+        <textarea 
+             placeholder="Comments"
+             onChange={handleChange}
+             name="comments"
+             value={formData.comments}  />
 
      </form>
   );
