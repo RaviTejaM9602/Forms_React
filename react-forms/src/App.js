@@ -2,12 +2,20 @@ import React, {useState} from "react"
 import './App.css';
 
 function App() {
-  const [firstName, setFirstName] = useState("");
+  const [formData, setFirstName] = useState({
+       firstName:"",
+       lastName:""
+  });
    
-  console.log(firstName);
+  console.log(formData);
 
   function handleChange(event) {
-    setFirstName(event.target.value)
+    setFirstName((prevFormData) => {
+      return {
+        ...prevFormData,
+        [event.target.name]: event.target.value
+      }
+    })
   }
   return (
      <form className="App">
@@ -16,7 +24,15 @@ function App() {
           placeholder="First Name"
           onChange={handleChange}
           name="firstName"
-          value={firstName} 
+          value={formData.firstName} 
+        />
+
+        <input 
+          type="text" 
+          placeholder="Last Name"
+          onChange={handleChange}
+          name="lastName"
+          value={formData.lastName} 
         />
 
 
